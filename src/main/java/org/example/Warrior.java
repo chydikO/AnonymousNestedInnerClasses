@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Для одного з класів-нащадків створити вкладений
@@ -14,7 +11,7 @@ import java.util.Random;
  */
 public class Warrior extends Unit implements Actions {
     private int accuracy;
-    private Weapon weapon = new Weapon();
+    private Backpack backpack = new Backpack();
 
     public Warrior(String name, int health, int armor, List<String> weapons, int accuracy) {
         super(name, health, armor, weapons);
@@ -29,17 +26,17 @@ public class Warrior extends Unit implements Actions {
         this.accuracy = accuracy;
     }
 
-    private class Weapon {
-        private String weaponName;
+    private class Backpack {
+        List<String> usefulThings;
 
-        public Weapon() {
-            List<String> weapons = new ArrayList<>(Arrays.asList("sword", "knife", "onion", "crossbow"));
-            this.weaponName = weapons.get(new Random().nextInt(weapons.size() - 1));
+        public Backpack() {
+            List<String> usefulThings = new ArrayList<>(Arrays.asList("first aid kit", "blue electrical tape", "Super glue"));
+            this.usefulThings = Collections.singletonList(usefulThings.get(new Random().nextInt(usefulThings.size() - 1)));
         }
 
         @Override
         public String toString() {
-            return "Weapon: weaponName= " + weaponName;
+            return "Weapon: weaponName= " + usefulThings;
         }
     }
 
@@ -64,7 +61,10 @@ public class Warrior extends Unit implements Actions {
                 .getClass()
                 .getEnclosingMethod()
                 .getName();
-        System.out.println("Class name: " + getClass().getName() + " method: " + methodName + " " + weapon);
+        System.out.println("Class name: " + getClass().getName()
+                + ", method: " + methodName
+                + ", weapon: " + getRandomWeapon()
+                + ", BackPack " + backpack.usefulThings);
     }
 
     @Override

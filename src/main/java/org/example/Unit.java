@@ -1,6 +1,8 @@
 package org.example;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public abstract class Unit {
     private String name;
@@ -45,6 +47,11 @@ public abstract class Unit {
 
     public void setWeapon(List<String> weaponsList) {
         this.weaponsList = weaponsList;
+    }
+
+    protected String getRandomWeapon() {
+        String randomWeapon = weaponsList.get(new Random().nextInt(weaponsList.size() - 1));
+        return randomWeapon;
     }
 
     @Override

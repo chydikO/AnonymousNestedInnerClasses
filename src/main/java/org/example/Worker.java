@@ -32,11 +32,9 @@ public class Worker extends Unit implements Actions {
     public void working(String workType) {
         class Work {
             String workType;
-
             public Work(String workType) {
                 this.workType = workType;
             }
-
             void makeWork() {
                 System.out.println("Make work " + workType);
             }
@@ -50,7 +48,6 @@ public class Worker extends Unit implements Actions {
             public Build(String buildingType) {
                 this.buildingType = buildingType;
             }
-
             void maikeBuilding() {
                 System.out.println("Make building " + buildingType);
             }

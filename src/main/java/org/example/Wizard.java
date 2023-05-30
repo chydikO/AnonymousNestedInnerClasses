@@ -42,8 +42,9 @@ public class Wizard extends Unit implements Actions {
                 .getClass()
                 .getEnclosingMethod()
                 .getName();
-        String commitWitchcraft = spell.commitWitchcraft(new Random().nextInt(spell.getSpillsSize()));
-        System.out.println("Class name: " + getClass().getName() + " method: " + methodName + " commitWitchcraft: " + commitWitchcraft);
+        System.out.println("Class name: " + getClass().getName()
+                + ", method: " + methodName
+                + ", commitWitchcraft: " + spell.getRandomSpell());
     }
 
     @Override
@@ -64,6 +65,10 @@ public class Wizard extends Unit implements Actions {
 
         public int getSpillsSize() {
             return spills.length;
+        }
+
+        public String getRandomSpell() {
+            return spills[(new Random().nextInt(spills.length - 1))];
         }
 
         private String commitWitchcraft(int indexWitchcraft) {
